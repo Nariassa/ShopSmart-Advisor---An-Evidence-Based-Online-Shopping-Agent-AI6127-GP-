@@ -1,0 +1,59 @@
+# Python environments and caches
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# IDE and OS metadata
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Large knowledge-base artifacts
+chunks.parquet
+bm25_index.pkl
+embedding_shards/
+chroma_db/
+chroma_db.zip
+chroma_db_incomplete_*/
+model_cache/
+tmp_duckdb/
+*.npy
+*.npz
+
+# Temporary and partial files
+*.tmp
+*.part
+*.bak
+*.log
+
+# Workbook render and inspection artifacts
+evaluation/*_previews/
+evaluation/workbook_previews/
+evaluation/backups/
+evaluation/*.inspect.ndjson
+evaluation/.artifact_build/
+evaluation/Amazon_Electronics_Qrels_Annotation.xlsx
+
+# Archived pre-confirmation annotation material
+evaluation/ai_annotation_batches/
+evaluation/ai_annotation_*.json
+evaluation/ai_annotation_*.jsonl
+evaluation/ai_annotations_v1.jsonl
+evaluation/qrels_ai_v1.txt
+evaluation/AI_ANNOTATION_README.md
+evaluation/annotation_human_review_queue_v2.jsonl
+evaluation/annotation_review_manifest_v2.json
+evaluation/annotation_review_v2.json
+evaluation/annotation_semantic_review_log_v2.jsonl
+evaluation/qrels_reviewed_v2.txt
+evaluation/reviewed_annotations_v2.jsonl
+evaluation/ANNOTATION_REVIEW_README.md
+scripts/finalize_ai_annotations.py
+scripts/finalize_reviewed_annotations_v2.py
+scripts/finalize_human_validated_qrels.py
+scripts/verify_ai_annotation_workbook.py

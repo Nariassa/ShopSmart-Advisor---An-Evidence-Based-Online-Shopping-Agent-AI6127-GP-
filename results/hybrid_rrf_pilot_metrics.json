@@ -1,0 +1,69 @@
+{
+  "run": {
+    "timestamp_utc": "2026-09-30T14:27:00.821883+00:00",
+    "python_version": "3.10.11",
+    "corpus_size": 4450749,
+    "index_load_seconds": 397.43578700000216,
+    "query_count": 9,
+    "mean_query_latency_seconds": 94.22018463333269,
+    "median_query_latency_seconds": 95.55269930000213,
+    "p95_query_latency_seconds": 111.39384849999988,
+    "evaluation_status": "pilot_silver_labels",
+    "retriever": "hybrid_rrf",
+    "rrf_k": 60,
+    "candidate_depth_per_source": 20,
+    "fusion_mode": "offline_replay_of_saved_rankings",
+    "mean_fusion_seconds": 0.0001147666662291158,
+    "mean_sequential_latency_seconds": 94.22018463333269,
+    "mean_parallel_estimate_seconds": 93.64639699999942,
+    "bm25_cold_load_seconds": 143.34581700000126,
+    "dense_cold_load_seconds": 254.0899700000009
+  },
+  "aggregate": {
+    "aspect_silver": {
+      "query_count": 6,
+      "precision_at_1": 0.8333333333333334,
+      "recall_at_1": 3.2298185293977486e-06,
+      "success_at_1": 0.8333333333333334,
+      "mrr_at_1": 0.8333333333333334,
+      "ndcg_at_1": 0.8333333333333334,
+      "precision_at_5": 0.7999999999999999,
+      "recall_at_5": 1.6151603557546415e-05,
+      "success_at_5": 1.0,
+      "mrr_at_5": 0.9166666666666666,
+      "ndcg_at_5": 0.8050699828938653,
+      "precision_at_10": 0.8166666666666668,
+      "recall_at_10": 3.251703113053629e-05,
+      "success_at_10": 1.0,
+      "mrr_at_10": 0.9166666666666666,
+      "ndcg_at_10": 0.814553446932587
+    },
+    "known_item_short_title": {
+      "query_count": 3,
+      "precision_at_1": 0.6666666666666666,
+      "recall_at_1": 0.04042553191489362,
+      "success_at_1": 0.6666666666666666,
+      "mrr_at_1": 0.6666666666666666,
+      "ndcg_at_1": 0.6666666666666666,
+      "precision_at_5": 0.6666666666666666,
+      "recall_at_5": 0.2021276595744681,
+      "success_at_5": 0.6666666666666666,
+      "mrr_at_5": 0.6666666666666666,
+      "ndcg_at_5": 0.6666666666666666,
+      "precision_at_10": 0.5666666666666668,
+      "recall_at_10": 0.35673758865248223,
+      "success_at_10": 0.6666666666666666,
+      "mrr_at_10": 0.6666666666666666,
+      "ndcg_at_10": 0.5963644280375155
+    }
+  },
+  "limitations": [
+    "Short-title queries contain lexical overlap with the indexed product prefix.",
+    "Aspect relevance uses keyword-derived labels from the corpus pipeline.",
+    "The pilot is for pipeline validation and initial comparison only.",
+    "Final claims require manually judged natural-language queries and qrels.",
+    "Fusion used the top 20 saved candidates from each source.",
+    "End-to-end latency is reconstructed from saved source runs rather than rerun in one process.",
+    "The parallel latency value is an estimate and may be infeasible on a 16 GB machine."
+  ]
+}

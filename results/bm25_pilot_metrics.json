@@ -1,0 +1,57 @@
+{
+  "run": {
+    "timestamp_utc": "2026-09-30T13:03:15.249859+00:00",
+    "python_version": "3.10.11",
+    "corpus_size": 4450749,
+    "index_load_seconds": 143.34581700000126,
+    "query_count": 9,
+    "mean_query_latency_seconds": 93.6462822333332,
+    "median_query_latency_seconds": 94.91259440000067,
+    "p95_query_latency_seconds": 110.67667040000015,
+    "evaluation_status": "pilot_silver_labels"
+  },
+  "aggregate": {
+    "aspect_silver": {
+      "query_count": 6,
+      "precision_at_1": 0.8333333333333334,
+      "recall_at_1": 3.2298185293977486e-06,
+      "success_at_1": 0.8333333333333334,
+      "mrr_at_1": 0.8333333333333334,
+      "ndcg_at_1": 0.8333333333333334,
+      "precision_at_5": 0.9,
+      "recall_at_5": 1.7946221912699693e-05,
+      "success_at_5": 1.0,
+      "mrr_at_5": 0.875,
+      "ndcg_at_5": 0.8795455712258414,
+      "precision_at_10": 0.85,
+      "recall_at_10": 3.4363804172295e-05,
+      "success_at_10": 1.0,
+      "mrr_at_10": 0.875,
+      "ndcg_at_10": 0.8506944413813223
+    },
+    "known_item_short_title": {
+      "query_count": 3,
+      "precision_at_1": 0.6666666666666666,
+      "recall_at_1": 0.04042553191489362,
+      "success_at_1": 0.6666666666666666,
+      "mrr_at_1": 0.6666666666666666,
+      "ndcg_at_1": 0.6666666666666666,
+      "precision_at_5": 0.6666666666666666,
+      "recall_at_5": 0.2021276595744681,
+      "success_at_5": 0.6666666666666666,
+      "mrr_at_5": 0.6666666666666666,
+      "ndcg_at_5": 0.6666666666666666,
+      "precision_at_10": 0.6666666666666666,
+      "recall_at_10": 0.4042553191489362,
+      "success_at_10": 0.6666666666666666,
+      "mrr_at_10": 0.6666666666666666,
+      "ndcg_at_10": 0.6666666666666666
+    }
+  },
+  "limitations": [
+    "Short-title queries contain lexical overlap with the indexed product prefix.",
+    "Aspect relevance uses keyword-derived labels from the corpus pipeline.",
+    "The pilot is for pipeline validation and initial comparison only.",
+    "Final claims require manually judged natural-language queries and qrels."
+  ]
+}

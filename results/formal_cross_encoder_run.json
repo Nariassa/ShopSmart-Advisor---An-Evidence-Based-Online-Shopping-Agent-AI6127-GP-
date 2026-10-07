@@ -1,0 +1,21 @@
+{
+  "stage": "hybrid_rrf_cross_encoder",
+  "timestamp_utc": "2026-10-03T15:19:49.085787+00:00",
+  "query_digest_sha256": "3107885e0dd3579f111308dc94a9c78e4aef32b0353c90b11b214f9aee749321",
+  "model": "cross-encoder/ms-marco-MiniLM-L6-v2",
+  "candidate_depth": 20,
+  "batch_size": 16,
+  "max_length": 512,
+  "model_load_seconds": 0.5286183999996865,
+  "warmup_seconds": 0.02425760000187438,
+  "latency": {
+    "query_count": 20,
+    "mean_seconds": 101.1100950449998,
+    "median_seconds": 102.80210255000202,
+    "p95_seconds": 110.30107739999949,
+    "minimum_seconds": 69.00755389999904,
+    "maximum_seconds": 115.76009429999976
+  },
+  "mean_rerank_seconds": 0.3732458799995584,
+  "evaluation_status": "complete_human_validated_single_reviewer_qrels"
+}

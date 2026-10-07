@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "validation_date": "2026-10-07",
+  "human_reviewer_id": "Human_Reviewer_01",
+  "validation_method": "The project member reviewed all 791 query-chunk pairs and confirmed the recorded labels.",
+  "candidate_pair_count": 791,
+  "query_count": 20,
+  "label_counts": {
+    "0": 209,
+    "1": 181,
+    "2": 401
+  },
+  "status": "complete_human_validated_single_reviewer_qrels",
+  "independent_second_annotator": false,
+  "inter_annotator_agreement": null,
+  "pool_sha256": "e417bd71634e6cdfce2ea921af427c61921523b3023b725a7b86aff51aa3c5d1",
+  "query_sha256": "3107885e0dd3579f111308dc94a9c78e4aef32b0353c90b11b214f9aee749321",
+  "input_reviewed_ledger_sha256": "e11bf0bd78da0eaa1b26dbaf68b6d01f9b794e4931ba1c9fa7e85dba789dd1f0",
+  "human_validated_ledger_sha256": "6fd0edd44f809e9260e83c0f283388fcd79083ba55cc389b76470028fc26333c",
+  "qrels_sha256": "9bc6a3a6c251049b8758fa569b525800536d92330abeea61116c8402548710da"
+}

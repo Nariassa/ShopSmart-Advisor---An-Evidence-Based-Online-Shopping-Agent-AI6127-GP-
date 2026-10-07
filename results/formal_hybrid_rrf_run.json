@@ -1,0 +1,17 @@
+{
+  "stage": "hybrid_rrf",
+  "timestamp_utc": "2026-10-03T15:19:34.005498+00:00",
+  "query_digest_sha256": "3107885e0dd3579f111308dc94a9c78e4aef32b0353c90b11b214f9aee749321",
+  "rrf_k": 60,
+  "candidate_depth_per_source": 20,
+  "saved_depth": 20,
+  "latency": {
+    "query_count": 20,
+    "mean_seconds": 100.73684916500024,
+    "median_seconds": 102.5887577500016,
+    "p95_seconds": 109.89204310000059,
+    "minimum_seconds": 68.71602060000077,
+    "maximum_seconds": 115.56443779999972
+  },
+  "evaluation_status": "complete_human_validated_single_reviewer_qrels"
+}

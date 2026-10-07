@@ -1,0 +1,66 @@
+{
+  "run": {
+    "timestamp_utc": "2026-09-30T14:16:58.062129+00:00",
+    "python_version": "3.10.11",
+    "corpus_size": 4450749,
+    "index_load_seconds": 254.0899700000009,
+    "query_count": 9,
+    "mean_query_latency_seconds": 0.5737876333332679,
+    "median_query_latency_seconds": 0.6184238999994704,
+    "p95_query_latency_seconds": 0.7170780000014929,
+    "evaluation_status": "pilot_silver_labels",
+    "retriever": "dense",
+    "embedding_model": "BAAI/bge-base-en-v1.5",
+    "chroma_collection": "electronics_kb",
+    "model_load_seconds": 1.3838533999987703,
+    "collection_open_seconds": 0.13672790000055102,
+    "collection_count_seconds": 252.56938870000158,
+    "index_warmup_seconds": 1.4402221000018471,
+    "mean_encoding_seconds": 0.03756044444445353,
+    "mean_vector_search_seconds": 0.5362252888888988
+  },
+  "aggregate": {
+    "aspect_silver": {
+      "query_count": 6,
+      "precision_at_1": 0.6666666666666666,
+      "recall_at_1": 2.695736626869832e-06,
+      "success_at_1": 0.6666666666666666,
+      "mrr_at_1": 0.6666666666666666,
+      "ndcg_at_1": 0.6666666666666666,
+      "precision_at_5": 0.7000000000000001,
+      "recall_at_5": 1.3672244584981116e-05,
+      "success_at_5": 0.8333333333333334,
+      "mrr_at_5": 0.75,
+      "ndcg_at_5": 0.6949300171061347,
+      "precision_at_10": 0.7833333333333333,
+      "recall_at_10": 3.157172539409915e-05,
+      "success_at_10": 1.0,
+      "mrr_at_10": 0.7777777777777778,
+      "ndcg_at_10": 0.7560559297189134
+    },
+    "known_item_short_title": {
+      "query_count": 3,
+      "precision_at_1": 0.3333333333333333,
+      "recall_at_1": 0.03333333333333333,
+      "success_at_1": 0.3333333333333333,
+      "mrr_at_1": 0.3333333333333333,
+      "ndcg_at_1": 0.3333333333333333,
+      "precision_at_5": 0.4000000000000001,
+      "recall_at_5": 0.14751773049645392,
+      "success_at_5": 0.6666666666666666,
+      "mrr_at_5": 0.5,
+      "ndcg_at_5": 0.39682483731347534,
+      "precision_at_10": 0.39999999999999997,
+      "recall_at_10": 0.32127659574468087,
+      "success_at_10": 0.6666666666666666,
+      "mrr_at_10": 0.5,
+      "ndcg_at_10": 0.3976787156769475
+    }
+  },
+  "limitations": [
+    "Short-title queries contain lexical overlap with the indexed product prefix.",
+    "Aspect relevance uses keyword-derived labels from the corpus pipeline.",
+    "The pilot is for pipeline validation and initial comparison only.",
+    "Final claims require manually judged natural-language queries and qrels."
+  ]
+}

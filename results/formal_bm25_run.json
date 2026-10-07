@@ -1,0 +1,17 @@
+{
+  "stage": "bm25",
+  "timestamp_utc": "2026-10-03T15:10:22.531827+00:00",
+  "query_digest_sha256": "3107885e0dd3579f111308dc94a9c78e4aef32b0353c90b11b214f9aee749321",
+  "corpus_size": 4450749,
+  "index_load_seconds": 131.67337620000035,
+  "retrieval_depth": 20,
+  "latency": {
+    "query_count": 20,
+    "mean_seconds": 100.34193734499968,
+    "median_seconds": 102.15087350000067,
+    "p95_seconds": 109.29939229999945,
+    "minimum_seconds": 68.36081319999721,
+    "maximum_seconds": 115.12194670000099
+  },
+  "evaluation_status": "complete_human_validated_single_reviewer_qrels"
+}

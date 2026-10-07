@@ -1,0 +1,72 @@
+{
+  "run": {
+    "timestamp_utc": "2026-09-30T14:42:44.823273+00:00",
+    "python_version": "3.10.11",
+    "corpus_size": 4450749,
+    "index_load_seconds": 397.70166600000084,
+    "query_count": 9,
+    "mean_query_latency_seconds": 94.66190165555498,
+    "median_query_latency_seconds": 95.76773440000397,
+    "p95_query_latency_seconds": 111.56188689999908,
+    "evaluation_status": "pilot_silver_labels",
+    "retriever": "hybrid_rrf_cross_encoder",
+    "reranker_model": "cross-encoder/ms-marco-MiniLM-L6-v2",
+    "candidate_depth": 20,
+    "batch_size": 16,
+    "max_length": 512,
+    "text_lookup_seconds": 1.2090410999990127,
+    "reranker_load_seconds": 0.2658789999986766,
+    "reranker_warmup_seconds": 0.021302199998899596,
+    "mean_rerank_seconds": 0.44171702222229214,
+    "mean_sequential_latency_seconds": 94.66190165555498,
+    "mean_parallel_estimate_seconds": 94.08811402222172,
+    "hybrid_cold_load_seconds": 397.43578700000216
+  },
+  "aggregate": {
+    "aspect_silver": {
+      "query_count": 6,
+      "precision_at_1": 0.8333333333333334,
+      "recall_at_1": 3.2298185293977486e-06,
+      "success_at_1": 0.8333333333333334,
+      "mrr_at_1": 0.8333333333333334,
+      "ndcg_at_1": 0.8333333333333334,
+      "precision_at_5": 0.9,
+      "recall_at_5": 1.7625964025615237e-05,
+      "success_at_5": 1.0,
+      "mrr_at_5": 0.9166666666666666,
+      "ndcg_at_5": 0.8972610612285559,
+      "precision_at_10": 0.8333333333333334,
+      "recall_at_10": 3.2829750936166846e-05,
+      "success_at_10": 1.0,
+      "mrr_at_10": 0.9166666666666666,
+      "ndcg_at_10": 0.8507093057649217
+    },
+    "known_item_short_title": {
+      "query_count": 3,
+      "precision_at_1": 0.6666666666666666,
+      "recall_at_1": 0.04042553191489362,
+      "success_at_1": 0.6666666666666666,
+      "mrr_at_1": 0.6666666666666666,
+      "ndcg_at_1": 0.6666666666666666,
+      "precision_at_5": 0.6666666666666666,
+      "recall_at_5": 0.2021276595744681,
+      "success_at_5": 0.6666666666666666,
+      "mrr_at_5": 0.6666666666666666,
+      "ndcg_at_5": 0.6666666666666666,
+      "precision_at_10": 0.6666666666666666,
+      "recall_at_10": 0.4042553191489362,
+      "success_at_10": 0.6666666666666666,
+      "mrr_at_10": 0.6666666666666666,
+      "ndcg_at_10": 0.6666666666666666
+    }
+  },
+  "limitations": [
+    "Short-title queries contain lexical overlap with the indexed product prefix.",
+    "Aspect relevance uses keyword-derived labels from the corpus pipeline.",
+    "The pilot is for pipeline validation and initial comparison only.",
+    "Final claims require manually judged natural-language queries and qrels.",
+    "The cross-encoder reranked only the top 20 saved hybrid candidates.",
+    "The reranker was trained on MS MARCO rather than Amazon Electronics relevance judgments.",
+    "End-to-end latency is reconstructed from saved retrieval runs plus measured reranking."
+  ]
+}

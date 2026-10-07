@@ -1,0 +1,20 @@
+{
+  "stage": "dense",
+  "timestamp_utc": "2026-10-03T15:17:50.989331+00:00",
+  "query_digest_sha256": "3107885e0dd3579f111308dc94a9c78e4aef32b0353c90b11b214f9aee749321",
+  "corpus_size": 4450749,
+  "model": "BAAI/bge-base-en-v1.5",
+  "model_load_seconds": 1.5334344000002602,
+  "collection_open_seconds": 1.3580341999986558,
+  "warmup_seconds": 1.396955500000331,
+  "retrieval_depth": 20,
+  "latency": {
+    "query_count": 20,
+    "mean_seconds": 0.3947487250001359,
+    "median_seconds": 0.3791708499993547,
+    "p95_seconds": 0.5925258000024769,
+    "minimum_seconds": 0.20243339999797172,
+    "maximum_seconds": 0.5955913000034343
+  },
+  "evaluation_status": "complete_human_validated_single_reviewer_qrels"
+}

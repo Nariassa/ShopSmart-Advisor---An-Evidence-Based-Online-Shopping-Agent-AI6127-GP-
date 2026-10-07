@@ -1,0 +1,130 @@
+{
+  "suite": "amazon_electronics_retrieval_baselines",
+  "status": "complete",
+  "validated_at_utc": "2026-10-03T15:37:23.169541+00:00",
+  "corpus_size": 4450749,
+  "evaluation": {
+    "status": "pilot_silver_labels",
+    "query_count": 9,
+    "saved_depth": 20,
+    "query_file": "evaluation/bm25_pilot_queries.jsonl",
+    "comparison_file": "results/baseline_comparison.csv"
+  },
+  "baseline_order": [
+    "bm25",
+    "dense",
+    "hybrid_rrf",
+    "cross_encoder"
+  ],
+  "baselines": [
+    {
+      "name": "bm25",
+      "description": "Lexical BM25 retrieval",
+      "status": "complete",
+      "artifacts": {
+        "results": "results/bm25_pilot_results.jsonl",
+        "metrics": "results/bm25_pilot_metrics.json",
+        "readme": "BM25_BASELINE_README.md",
+        "runner": "scripts/run_bm25_baseline.py"
+      },
+      "latency": {
+        "cold_initialization_seconds": 143.34581700000126,
+        "mean_query_seconds": 93.6462822333332,
+        "p95_query_seconds": 110.67667040000015
+      },
+      "aspect_metrics": {
+        "precision_at_5": 0.9,
+        "precision_at_10": 0.85,
+        "mrr_at_10": 0.875,
+        "ndcg_at_10": 0.8506944413813223
+      },
+      "known_item_metrics": {
+        "success_at_10": 0.6666666666666666,
+        "mrr_at_10": 0.6666666666666666,
+        "ndcg_at_10": 0.6666666666666666
+      }
+    },
+    {
+      "name": "dense",
+      "description": "BAAI/bge-base-en-v1.5 dense retrieval",
+      "status": "complete",
+      "artifacts": {
+        "results": "results/dense_pilot_results.jsonl",
+        "metrics": "results/dense_pilot_metrics.json",
+        "readme": "DENSE_BASELINE_README.md",
+        "runner": "scripts/run_dense_baseline.py"
+      },
+      "latency": {
+        "cold_initialization_seconds": 254.0899700000009,
+        "mean_query_seconds": 0.5737876333332679,
+        "p95_query_seconds": 0.7170780000014929
+      },
+      "aspect_metrics": {
+        "precision_at_5": 0.7000000000000001,
+        "precision_at_10": 0.7833333333333333,
+        "mrr_at_10": 0.7777777777777778,
+        "ndcg_at_10": 0.7560559297189134
+      },
+      "known_item_metrics": {
+        "success_at_10": 0.6666666666666666,
+        "mrr_at_10": 0.5,
+        "ndcg_at_10": 0.3976787156769475
+      }
+    },
+    {
+      "name": "hybrid_rrf",
+      "description": "BM25 plus dense retrieval with Reciprocal Rank Fusion",
+      "status": "complete",
+      "artifacts": {
+        "results": "results/hybrid_rrf_pilot_results.jsonl",
+        "metrics": "results/hybrid_rrf_pilot_metrics.json",
+        "readme": "HYBRID_RRF_BASELINE_README.md",
+        "runner": "scripts/run_hybrid_rrf_baseline.py"
+      },
+      "latency": {
+        "cold_initialization_seconds": 397.43578700000216,
+        "mean_query_seconds": 94.22018463333269,
+        "p95_query_seconds": 111.39384849999988
+      },
+      "aspect_metrics": {
+        "precision_at_5": 0.7999999999999999,
+        "precision_at_10": 0.8166666666666668,
+        "mrr_at_10": 0.9166666666666666,
+        "ndcg_at_10": 0.814553446932587
+      },
+      "known_item_metrics": {
+        "success_at_10": 0.6666666666666666,
+        "mrr_at_10": 0.6666666666666666,
+        "ndcg_at_10": 0.5963644280375155
+      }
+    },
+    {
+      "name": "cross_encoder",
+      "description": "Hybrid RRF followed by cross-encoder reranking",
+      "status": "complete",
+      "artifacts": {
+        "results": "results/cross_encoder_pilot_results.jsonl",
+        "metrics": "results/cross_encoder_pilot_metrics.json",
+        "readme": "CROSS_ENCODER_BASELINE_README.md",
+        "runner": "scripts/run_cross_encoder_baseline.py"
+      },
+      "latency": {
+        "cold_initialization_seconds": 397.70166600000084,
+        "mean_query_seconds": 94.66190165555498,
+        "p95_query_seconds": 111.56188689999908
+      },
+      "aspect_metrics": {
+        "precision_at_5": 0.9,
+        "precision_at_10": 0.8333333333333334,
+        "mrr_at_10": 0.9166666666666666,
+        "ndcg_at_10": 0.8507093057649217
+      },
+      "known_item_metrics": {
+        "success_at_10": 0.6666666666666666,
+        "mrr_at_10": 0.6666666666666666,
+        "ndcg_at_10": 0.6666666666666666
+      }
+    }
+  ],
+  "next_stage": "manual_queries_and_qrels"
+}

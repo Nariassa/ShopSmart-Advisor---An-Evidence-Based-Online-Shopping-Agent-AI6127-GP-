@@ -1,0 +1,15 @@
+{
+  "workbook": "Amazon_Electronics_Qrels_Annotation.xlsx",
+  "formal_query_count": 20,
+  "pilot_query_count": 9,
+  "pilot_candidate_count": 180,
+  "candidates_per_pilot_query": 20,
+  "pool_source": "cross_encoder_pilot_results.jsonl",
+  "candidate_origin": "Hybrid RRF top-20 candidate pool reranked by the cross-encoder",
+  "annotation_labels": {
+    "highly_relevant": 2,
+    "partially_relevant": 1,
+    "not_relevant": 0
+  },
+  "created_at": "2026-09-30T15:14:22.679Z"
+}

@@ -1,0 +1,18 @@
+{
+  "status": "complete",
+  "query_count": 20,
+  "system_count": 4,
+  "candidate_depth": 20,
+  "qrels_pair_count": 791,
+  "best_system_by_ndcg_at_10": "Dense",
+  "ranking_by_ndcg_at_10": [
+    "Dense",
+    "Cross-Encoder",
+    "Hybrid RRF",
+    "BM25"
+  ],
+  "metrics_sha256": "c53118b3aa17eaa2952a141afd0587ac2b4007395919f85418e31e1d2919ea89",
+  "comparison_sha256": "531b7c8ac06c71f57e2381d460977fecef8a48dc77af32d42ce2857afee1dbdb",
+  "per_query_sha256": "19c15c56fa9c829ff90bd23072144b80cfc438f6e0c3a3cabdfb8e5873427860",
+  "qrels_sha256": "9bc6a3a6c251049b8758fa569b525800536d92330abeea61116c8402548710da"
+}

@@ -1,0 +1,40 @@
+{
+  "status": "complete",
+  "timestamp_utc": "2026-10-03T15:37:29.162372+00:00",
+  "query_path": "evaluation/formal_queries_v1.jsonl",
+  "query_digest_sha256": "3107885e0dd3579f111308dc94a9c78e4aef32b0353c90b11b214f9aee749321",
+  "query_count": 20,
+  "corpus_size": 4450749,
+  "frozen_configuration": {
+    "bm25_tokenization": "lowercase_whitespace_split",
+    "dense_model": "BAAI/bge-base-en-v1.5",
+    "rrf_k": 60,
+    "candidate_depth_per_source": 20,
+    "cross_encoder_model": "cross-encoder/ms-marco-MiniLM-L6-v2",
+    "cross_encoder_depth": 20
+  },
+  "stages": {
+    "bm25": {
+      "query_count": 20,
+      "result_depth": 20,
+      "unique_candidate_pairs": 400
+    },
+    "dense": {
+      "query_count": 20,
+      "result_depth": 20,
+      "unique_candidate_pairs": 400
+    },
+    "hybrid": {
+      "query_count": 20,
+      "result_depth": 20,
+      "unique_candidate_pairs": 400
+    },
+    "rerank": {
+      "query_count": 20,
+      "result_depth": 20,
+      "unique_candidate_pairs": 400
+    }
+  },
+  "evaluation_status": "complete_human_validated_single_reviewer_qrels",
+  "evaluation_manifest": "results/formal_human_evaluation_manifest.json"
+}

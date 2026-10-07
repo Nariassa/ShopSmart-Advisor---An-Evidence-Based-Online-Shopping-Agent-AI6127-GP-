@@ -1,0 +1,8 @@
+chromadb
+duckdb
+gdown
+numpy
+pandas
+pyarrow
+rank-bm25
+sentence-transformers
