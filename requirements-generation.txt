@@ -1,0 +1,8 @@
+# Generation core uses the Python standard library.
+# This is needed only when reading the supplied Parquet corpus.
+pyarrow>=15
+
+# For live retrieval, obtain src/retrieval/ and requirements.txt from the upstream retrieval repository.
+# Optional --sentiment-model / --nli-model: transformers, torch, sentencepiece.
+# English NLI has been tested locally with cross-encoder/nli-deberta-v3-small.
+# Ollama is a separate local service; no Python API key is required.

@@ -1,0 +1,8 @@
+{
+  "DEMO_A": {
+    "aspects": {
+      "battery life": {"positive": 8, "negative": 2, "neutral": 0},
+      "comfort": {"positive": 4, "negative": 4, "neutral": 2}
+    }
+  }
+}

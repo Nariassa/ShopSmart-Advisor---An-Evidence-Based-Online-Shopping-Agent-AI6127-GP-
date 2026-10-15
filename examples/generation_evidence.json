@@ -1,0 +1,11 @@
+{
+  "description": "SYNTHETIC TEST FIXTURE. Not real Amazon products or empirical evaluation data.",
+  "evidence": [
+    {"chunk_id": "DEMO_A_spec", "parent_asin": "DEMO_A", "chunk_type": "spec", "aspect": "specifications", "title": "Demo Headphones A (synthetic)", "text": "The manufacturer specifies Bluetooth 5.3 connectivity.", "price": 99, "currency": "USD"},
+    {"chunk_id": "DEMO_A_battery_1", "parent_asin": "DEMO_A", "chunk_type": "review", "aspect": "battery life", "title": "Demo Headphones A (synthetic)", "text": "Battery life is excellent and lasts through my workday.", "source_review_id": "demo-review-1", "sentiment_label": "positive", "timestamp": "2026-09-15T00:00:00Z", "verified_purchase": true, "helpful_vote": 20},
+    {"chunk_id": "DEMO_A_battery_2", "parent_asin": "DEMO_A", "chunk_type": "review", "aspect": "battery life", "title": "Demo Headphones A (synthetic)", "text": "The battery is reliable for my daily commute.", "source_review_id": "demo-review-2", "sentiment_label": "positive", "timestamp": "2026-09-20T00:00:00Z", "verified_purchase": true, "helpful_vote": 8},
+    {"chunk_id": "DEMO_A_comfort_1", "parent_asin": "DEMO_A", "chunk_type": "review", "aspect": "comfort", "title": "Demo Headphones A (synthetic)", "text": "The cushions are comfortable during long listening sessions.", "source_review_id": "demo-review-3", "sentiment_label": "positive", "timestamp": "2026-09-25T00:00:00Z", "verified_purchase": true, "helpful_vote": 15},
+    {"chunk_id": "DEMO_A_comfort_2", "parent_asin": "DEMO_A", "chunk_type": "review", "aspect": "comfort", "title": "Demo Headphones A (synthetic)", "text": "The ear pads become uncomfortable after two hours.", "source_review_id": "demo-review-4", "sentiment_label": "negative", "timestamp": "2026-09-27T00:00:00Z", "verified_purchase": true, "helpful_vote": 10},
+    {"chunk_id": "DEMO_B_battery_1", "parent_asin": "DEMO_B", "chunk_type": "review", "aspect": "battery life", "title": "Demo Headphones B (synthetic)", "text": "Battery life is poor and charging is unreliable.", "source_review_id": "demo-review-5", "sentiment_label": "negative", "timestamp": "2026-09-01T00:00:00Z", "verified_purchase": true, "helpful_vote": 3}
+  ]
+}

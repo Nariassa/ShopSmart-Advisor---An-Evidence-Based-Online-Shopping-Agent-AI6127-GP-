@@ -1,0 +1,2 @@
+{"query_id":"DEMO_Q1","query":"Are these headphones good for battery life and comfort?","target_aspects":"battery life;comfort","data_kind":"synthetic_smoke_test"}
+{"query_id":"DEMO_Q2","query":"Are these headphones under $80?","target_aspects":"price/value","data_kind":"synthetic_smoke_test"}
