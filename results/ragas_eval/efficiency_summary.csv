@@ -1,0 +1,11 @@
+,value
+queries,20.0
+retrieval_s_mean,0.3947
+generation_s_mean,2.9233
+generation_s_p95,3.5236
+end_to_end_s_mean,3.3181
+throughput_queries_per_min_sequential,18.0827
+tokens_in_mean,576.0
+tokens_out_mean,257.0
+cost_per_query_usd,0.0002
+cost_total_usd,0.0048
