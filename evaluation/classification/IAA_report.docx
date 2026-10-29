@@ -1,0 +1,29 @@
+Inter-Annotator Agreement Report
+ShopSmart Advisor, AI6127 | Evaluation set: 1,000 Amazon Electronics review chunks | Task: 3-way polarity (positive / neutral / negative)
+1. Setup
+Two annotators labeled all 1,000 records independently, using the guideline in the annotation package (subjectivity first, then polarity). Disagreements were adjudicated into a single final label (58 resolved to annotator 1, 48 to annotator 2). [Fill in: who annotator 1 and annotator 2 are, and whether either used LLM assistance. The master file carries an llm_confidence column, so any LLM-drafted labels must be stated here.]
+2. Overall agreement
+Metric	Value	95% bootstrap CI
+Raw agreement	89.4% (894 / 1,000)	87.5% - 91.2%
+Cohen's kappa	0.798	0.763 - 0.831
+Linearly weighted kappa	0.829	n/a
+Raw agreement exceeds the 80% target. By the Landis and Koch scale, kappa of 0.61-0.80 is 'substantial' agreement; 0.798 is at the top of that band.
+3. Agreement by class
+Class	Rows either annotator chose it	Raw agreement	One-vs-rest kappa
+positive	655	88.1%	0.836
+neutral	360	70.6%	0.754
+negative	91	69.2%	0.804
+4. Confusion between annotators
+Annotator 1 \ Annotator 2	negative	neutral	positive
+negative	63	28	0
+neutral	0	254	0
+positive	0	78	577
+5. Findings
+•	All 106 disagreements are one-directional: annotator 1 chose positive (78) or negative (28) where annotator 2 chose neutral. There is no positive-vs-negative conflict, so the disagreement is about the neutral boundary, not about sentiment direction.
+•	Typical disagreement cases are lukewarm or mixed reviews, such as "adequate", "serviceable" and "great but minor flaw". The guideline should state the rule for them (here: label the dominant or concluding stance, and use neutral only when no stance is expressed).
+•	Agreement is higher on subjective chunks (90.8%, n = 773) than on objective chunks (84.6%, n = 227).
+•	Rows with a high llm_confidence (>= 0.9, n = 310) show 100% agreement; the other 690 rows show 84.6%. Disagreements are concentrated in low-confidence rows.
+6. Limitations
+•	Two annotators were used. A third would allow Fleiss kappa and majority vote, but the assignment allows two.
+•	Final label distribution is imbalanced (625 positive, 302 neutral, 73 negative), so per-class agreement on negative rests on few rows.
+•	Kappa is computed against the pre-adjudication labels, so it is not inflated by the adjudication step.
