@@ -1,0 +1,16 @@
+Figure 1: Polarity confusion matrices (confusion_polarity.png)
+
+Caption: Confusion matrices for three-way polarity classification (negative / neutral / positive) on the 1,000-record evaluation set. Rows are the adjudicated gold labels and columns are model predictions. Left to right: VADER, TF-IDF + Logistic Regression and TF-IDF + LinearSVC. The trained models are evaluated with 5-fold cross-validation grouped by product.
+
+Description: Each panel is a 3×3 grid of counts, with darker cells holding more reviews. All three models have a dark positive–positive cell (535, 493 and 546 correct out of 625), so positive is the easiest class. The negative row shows the main difference between the models:
+
+VADER finds 52 of 73 negative reviews, but also labels 91 neutral reviews as negative.
+The TF-IDF models find only 15 and 8 of the 73 negative reviews, and send most of the rest to neutral.
+
+The neutral row is spread across columns for every model: 123, 95 and 140 neutral reviews are predicted positive. This matches the annotators’ note that lukewarm reviews are hard to separate from mildly positive ones.
+
+Figure 2: Macro-F1 by model and task (macro_f1.png)
+
+Caption: Macro-averaged F1 for polarity and subjectivity classification across the three baseline models on the 1,000-record evaluation set. Macro-F1 weights every class equally, so it penalizes weak performance on the small negative and objective classes.
+
+Description: The bar chart has one group of two bars per model: polarity in blue and subjectivity in orange. Polarity scores are 0.54 (VADER), 0.56 (TF-IDF + LogReg) and 0.51 (TF-IDF + LinearSVC). Subjectivity scores are 0.62, 0.65 and 0.63. Subjectivity is higher for every model, mainly because the subjective class makes up 77% of the data and is easy to predict. No model is far above the others, and the confidence intervals overlap. The chart shows that the baselines leave a lot of room for the RoBERTa model to improve.
