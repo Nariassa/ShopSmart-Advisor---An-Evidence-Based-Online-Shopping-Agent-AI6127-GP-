@@ -1,0 +1,28 @@
+[
+ {
+  "query_id": "Q001",
+  "user_input": "Which wireless earbuds have long battery life and stay comfortable during long flights?",
+  "retrieved_contexts": [
+   "JBL Everest 310 On-Ear Wireless Bluetooth Headphones (Purple): Awesome battery life, and I can plug them in to use on a plane without needing bluetooth.",
+   "Braven Flye Sport Bluetooth Earbuds - Grey / Red: Long battery life.",
+   "Noise Cancelling Neckband Earphones: The battery lasts long enough for pretty much any flight",
+   "233621 H501 Active Noise Cancelling Over-ear Headphones with Inline Microphone and Carrying Case, 50 hour Battery Time (Wired / Space Grey): I bought these for an international trip. They were also very comfortable. I kept them on the entire 12 hour flight. I am very happy with this purchase.",
+   "Wireless Earbuds, Otium True Bluetooth in-Ear Headphones Wireless Earphones Has Latest Bluetooth 5.0 Built-in Mic Deep Bass Sound Sweat Proof Designed for Running Gym: I have not tried these on a plane yet, but they are much better than my similarly priced skullcandy bluetooth headphones.<br />-Charging case<br />-When they work for phone calls, the other person can hear me clearly<br /><br />Cons"
+  ],
+  "reference": "Wireless Gear True Wireless Bluetooth Secure Fit Earbuds, Turquoise: Battery life could definitely be longer on these. Wireless Gear Bluetooth 5.0 True Wireless Stereo Earbuds with Charging Case, Black: I love the charging case and it does not take long for them to re-charge. It does have a long battery life as well. WYZE Earbuds Pro, 40 dB Active Noise Cancelling Wireless Earbuds, 6 Voice-Isolating Mics ANC Bluetooth Headphones, Bluetooth 5.0 Wireless Charging Alexa Built-in True Wireless Earbuds: but I just wish they had a longer battery life. I have also had the habit of using my right earbud all the time and have noticed that the battery has noticeably degraded, so now my right earbud always runs out of battery first.<br />Other than the battery thing these are great. FIIL Bluetooth Headphones, Wireless 4.1 Magnetic Earbuds In-Ear Stereo Earphones Running headsets,IPX4 Sweatproof Secure Fit for Sports with Built-in Noise Cancelling Mic (Red): They are very comfortable and have a long battery life. Wireless in-Ear Headphones, Bluetooth Headphones, Neckband Sports Bluetooth Headsets Lightweight Magnetic Earbuds for Running Workout Gym(Bluetooth 4.1, 10 Hour Battery, Noise Cancelling,Sweatproof): great sound quality and long battery life atune analog Wireless Earbuds, Bluetooth 5.0 with USB Charging Case, Comfortable Wear Easy Setup Pair, True Wireless Earbuds 33FT Built-in Mic Call For iPhone Android Phones: Worked great and long battery life. I love the storage charging case. Braven Flye Sport Bluetooth Earbuds - Grey / Red: Long battery life. Braven Flye Sport Bluetooth Earbuds - Grey / Red: These are the only earbuds I have gotten that reliably last 10 hours or more.",
+  "retrieval_latency_s": 0.3550390000018524
+ },
+ {
+  "query_id": "Q002",
+  "user_input": "I need Bluetooth headphones with clear microphone quality and a stable connection for work calls.",
+  "retrieved_contexts": [
+   "Kinivo BTH240 Bluetooth Headphones (White, On-Ear, Wireless Music, Hands-Free Calling, Built-in Mic, Foldable, Memory Form Earpads, Travel Bag): It is not over the top when it comes to sound quality",
+   "Movo BTH400 Wireless Bluetooth Stereo Headphones with Noise Isolation, Microphone, 12 Hour Rechargeable Battery & Deluxe Hard Case: Pretty solid headphones, I would recommend",
+   "Kinivo BTH240 Bluetooth Headphones (Red, On-Ear, Wireless Music, Hands-Free Calling, Built-in Mic, Foldable, Memory Form Earpads, Travel Bag): It just works.<br /><br />Volume controls are easy to find 'blind' (but you could put a tiny file dot on the down volume button to make it even easier).<br /><br",
+   "Bluetooth Stereo Headset/Headphones: Acceptable sound clarity and range.",
+   "Kinivo BTM440 Bluetooth Mono Headset - Supports Hands-Free calling (Black): the best quality sound on the market (however, the price makes it all worth the purchase)<br />-would be convenient if the microphone piece was retractable<br /><br />Worth"
+  ],
+  "reference": "Wireless Headphones Non Ear Plug, 2019 New True Wireless Earbuds Noise Cancelling Handsfree Headset with Microphone for iPhone and Android Smart Phones (Yellow): I do not like the fact they do not stay connected and they are not clear on calls. Oxi Hands-Free Bluetooth Headset \u2013 Noise-Cancelling Over Ear Headphones with Built-In Microphone \u2013 Lightweight, Adjustable Comfort Ideal for Traveling, Work Calls, Trucking and Construction Work: Very good sound quality and the microphone filters out road and factory noise pretty well. Plantronics BackBeat 500 Wireless Bluetooth Headphones - Lightweight Memory Foam Headband and Earcups - Compatible with iPhone, iPad, Android, and Other Smart Devices - White: Unfortunate, it is not clear in the description, but these are not suitable for phone calls. Poly Voyager 4320 UC Wireless Headset & Charge Stand (Plantronics) - Stereo Headphones W/Noise-Canceling Boom Mic - Connect PC/Mac/Mobile Via Bluetooth - Microsoft Teams Certified - Amazon Exclusive: I have been using this headset for a month now and it is perfect. I work from home and can be anywhere in my home and still be heard crystal clear with my calls. I recommend this for all thar WFH.",
+  "retrieval_latency_s": 0.4504573000012897
+ }
+]
