@@ -704,7 +704,7 @@ def to_markdown(result: dict) -> str:
     """Render a result as the 'Why not?' panel text (works in Streamlit st.markdown)."""
     if "error" in result:
         return f"**Why not?** {result['error']}"
-    lines = [f"### ⚠️ Why not *{result['title'] or result['asin']}*?", result["headline"], ""]
+    lines = [f"#### ⚠️ Why not *{shorten(result['title'] or result['asin'], 80)}*?", result["headline"]]
     for d in result["deal_breakers"]:
         lines.append(f"🔴 **Deal breaker: {d['issue']}** - reported in {d['reports']} of "
                      f"{d['review_chunks']} review chunks")
@@ -742,5 +742,9 @@ def to_markdown(result: dict) -> str:
         lines.append(f"🔸 **Minor concern ({label}, {m['mentions']} mention(s)):** "
                      f"\"{q['quote']}\" `[{q['chunk_id']}]`")
     for m in result["missing"]:
-        lines.append(f"⚪ **No evidence:** no reviews mention *{m['aspect']}*")
-    return "\n".join(lines)
+        if m["chunks"] == 0:
+            lines.append(f"⚪ **No evidence:** no reviews mention *{m['aspect']}*")
+        else:
+            lines.append(f"⚪ **Little evidence:** only {m['chunks']} review chunk mentions *{m['aspect']}*")
+    # blank line between items so every item is its own line in Markdown / Streamlit
+    return "\n\n".join(line for line in lines if line != "")
