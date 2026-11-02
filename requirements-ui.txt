@@ -1,0 +1,5 @@
+-r requirements.txt
+streamlit
+transformers
+openai
+# For CPU-only Windows installs, install torch from the official CPU wheel index first.

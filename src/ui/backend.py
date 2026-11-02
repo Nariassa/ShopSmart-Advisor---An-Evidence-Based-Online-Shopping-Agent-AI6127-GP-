@@ -199,6 +199,7 @@ class ShopSmartBackend:
         self._explain_cache: OrderedDict = OrderedDict()
         self.saved: dict[str, dict] = {}          # normalised query -> saved outputs (saved mode only)
         self.mode = "full"
+        self._analysis_cache = {}
 
     # -- construction ----------------------------------------------------------
 
@@ -209,6 +210,13 @@ class ShopSmartBackend:
         """Full mode: real knowledge base. Uses chroma_db when it exists."""
         from src.why_not.why_not import SentimentScorer, dense_similar_products
 
+        if os.getenv("SHOPSMART_RETRIEVER") == "shards":
+            from src.ui.disk_backend import DiskReviewStore, ShardDenseRetriever
+            store = DiskReviewStore(chunks_path)
+            shard_path = os.getenv("EMBEDDING_SHARDS_PATH", str(Path(chunks_path).parent / "embedding_shards"))
+            dense = ShardDenseRetriever(shard_path).load()
+            return cls(WhyNotExplainer(store, SentimentScorer(batch_size=8, device=-1), dense_similar_products(dense)),
+                       dense_retriever=dense, openai_key=openai_key or os.getenv("OPENAI_API_KEY"))
         store = ReviewStore.from_parquet(chunks_path)
         dense = None
         if chroma_path and os.path.isdir(chroma_path):
@@ -277,7 +285,7 @@ class ShopSmartBackend:
         if self.mode == "saved":
             return "Saved Dense results (BGE) for the test questions; keyword search otherwise"
         if self.dense is not None:
-            return "Dense retrieval (BGE + Chroma)"
+            return "Dense retrieval (BGE + memory-mapped shards)" if os.getenv("SHOPSMART_RETRIEVER") == "shards" else "Dense retrieval (BGE + Chroma)"
         return "Product-title search (stand-in: no chroma_db)"
 
     @property
@@ -302,6 +310,8 @@ class ShopSmartBackend:
     def _dense_search(self, query: str, n_products: int) -> list[ProductHit]:
         results, _ = self.dense.search(query, top_k=CANDIDATE_CHUNKS)
         grouped: OrderedDict[str, list] = OrderedDict()
+        if hasattr(self.store, "prefetch"):
+            self.store.prefetch([r.metadata.get("parent_asin") for r in results if r.metadata.get("parent_asin")])
         for r in results:
             asin = r.metadata.get("parent_asin")
             if asin and self.store.has(asin):
@@ -414,9 +424,19 @@ class ShopSmartBackend:
         return self._explain_cache[key]
 
     def analyse(self, hit: ProductHit, query: str) -> dict:
-        result = self.explain(hit.asin, query)
-        coverage = coverage_checklist(query, result)
-        return {"pcs": compute_pcs(result, coverage), "coverage": coverage, "why_not": result}
+        key = (hit.asin, query)
+        if key not in self._analysis_cache:
+            result = self.explain(hit.asin, query)
+            coverage = coverage_checklist(query, result)
+            if self.mode == "full":
+                from src.ui.pcs_adapter import product_pcs
+                pcs = product_pcs(self.store, self.explainer.sentiment, hit.asin, query, coverage)
+            else:
+                pcs = compute_pcs(result, coverage)
+            if len(self._analysis_cache) > 500:
+                self._analysis_cache.clear()
+            self._analysis_cache[key] = {"pcs": pcs, "coverage": coverage, "why_not": result}
+        return self._analysis_cache[key]
 
     def why_not_markdown(self, asin: str, query: str) -> str:
         return to_markdown(self.explain(asin, query, with_alternatives=True))

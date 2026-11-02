@@ -1,0 +1,74 @@
+*{box-sizing:border-box}
+.stApp{background:var(--bg);color:var(--ink);--text-color:var(--ink);--background-color:var(--bg);--secondary-background-color:var(--surface);--primary-color:var(--accent)}
+[data-testid="stHeader"]{background:transparent}
+.block-container{max-width:1220px;padding:2.4rem 3rem 2rem}
+.stApp h1,.stApp h2,.stApp h3,.stApp h4,.stApp p,.stApp li,.stApp label,.stApp summary{color:var(--ink)!important}
+h1{font-family:Georgia,'Times New Roman',serif!important;font-size:3.45rem!important;line-height:1.09!important;font-weight:500!important;letter-spacing:-.045em!important;white-space:pre-line;margin-bottom:18px!important}
+h2{font-size:1.45rem!important;letter-spacing:-.025em!important}h3{font-size:1.18rem!important;line-height:1.4!important;letter-spacing:-.02em}
+p{line-height:1.65}
+.stApp [data-testid="stCaptionContainer"] p,.stApp [data-testid="stCaptionContainer"]{color:var(--muted)!important;font-size:.82rem!important}
+[data-testid="stSidebar"]{background:var(--surface);border-right:1px solid var(--line)}
+[data-testid="stSidebarUserContent"]{padding-top:36px!important}
+.brand{font-size:1.65rem;font-weight:700;letter-spacing:-.07em;display:flex;align-items:center;gap:10px;color:var(--ink)}
+.brand-symbol{display:inline-grid;place-items:center;width:34px;height:34px;background:var(--accent);color:var(--onaccent);font-family:Georgia,serif;border-radius:9px;font-size:26px}.brand-dot{margin-left:-10px;color:var(--accent)}
+.nav-caption{font-size:9px;letter-spacing:.12em;color:var(--muted);margin:12px 0 38px}
+.topbar{display:flex;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:38px;color:var(--muted);font-size:10px;letter-spacing:.1em}
+.eyebrow{font-size:10px;font-weight:600;letter-spacing:.16em;color:var(--muted);margin:4px 0 18px}
+.editorial{background:var(--soft);border:1px solid var(--line);border-radius:14px;padding:26px 30px;margin-bottom:14px;position:relative;overflow:hidden}
+.editorial:after{content:'';position:absolute;width:130px;height:130px;border:1px solid var(--line);border-radius:50%;right:-50px;top:32px;pointer-events:none}
+.editorial-label{font-size:9px;letter-spacing:.13em;color:var(--muted)}.editorial-title{font-family:Georgia,serif;font-size:31px;line-height:1.1;letter-spacing:-.03em;margin:18px 0;color:var(--ink)}
+.editorial-row{font-size:12px;padding:8px 0;border-top:1px solid var(--line);color:var(--ink)}.editorial-row b{font-size:10px;margin-right:14px;color:var(--muted)}
+[data-testid="stForm"]{background:var(--surface);border:1px solid var(--line)!important;border-radius:12px!important;padding:22px!important;margin:8px 0 22px}
+[data-testid="stVerticalBlockBorderWrapper"]>div{border-color:var(--line)!important;border-radius:12px!important;background:var(--surface)}
+.stApp input,.stApp textarea{background:var(--surface)!important;color:var(--ink)!important;-webkit-text-fill-color:var(--ink)!important;caret-color:var(--ink)}
+.stApp input::placeholder{color:var(--muted)!important;-webkit-text-fill-color:var(--muted)!important;opacity:1}
+.stApp [data-baseweb="input"],.stApp [data-baseweb="base-input"],.stApp [data-baseweb="select"]>div{background:var(--surface)!important;color:var(--ink)!important;border-color:var(--line)!important;border-radius:7px}
+.stApp [data-baseweb="select"] span{color:var(--ink)!important}
+.stApp button{min-height:42px;border-radius:7px!important;background:var(--surface);border:1px solid var(--line);color:var(--ink)!important;font-weight:500}
+.stApp button p,.stApp button span{color:inherit!important;font-size:13px!important}
+.stApp button[kind="primaryFormSubmit"],.stApp button[kind="primary"],.stApp button[data-testid="stBaseButton-primaryFormSubmit"]{background:var(--accent)!important;color:var(--onaccent)!important;border-color:var(--accent)!important}
+.stApp button[kind="primaryFormSubmit"] p,.stApp button[kind="primary"] p,.stApp button[data-testid="stBaseButton-primaryFormSubmit"] p{color:var(--onaccent)!important}
+.stApp button:disabled{opacity:.55}.stApp button:hover{border-color:var(--accent)!important}.stApp button:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.stApp [data-testid="stSidebar"] [role="radiogroup"]:not([aria-orientation="horizontal"]){gap:8px}
+.stApp [data-testid="stSidebar"] [role="radiogroup"] label{min-height:40px;padding:5px 8px;border-radius:7px}
+.stApp [data-testid="stSidebar"] [role="radiogroup"] label:has(input:checked){background:var(--soft)}
+.stApp [data-testid="stMetricValue"]{font-family:Georgia,serif;font-size:2.8rem;color:var(--accent)}
+.stApp [data-testid="stMetricLabel"] p{font-size:.75rem!important}
+.stApp [data-testid="stExpander"]{background:var(--surface);border-color:var(--line);border-radius:8px}
+.stApp [data-testid="stAlert"]{background:var(--soft);color:var(--ink)}
+.stApp [role="tab"]{background:transparent;border:0;border-radius:0!important;min-height:42px}
+.stApp [role="tab"][aria-selected="true"]{color:var(--accent)!important;border-bottom:2px solid var(--accent)}
+.stApp code{background:var(--soft)!important;color:var(--ink)!important}.stApp a{color:var(--accent)}
+.stApp svg{fill:currentColor}hr{border-color:var(--line)!important}
+.step{font-size:10px;letter-spacing:.12em;color:var(--muted);margin:5px 0 16px}
+.stat{border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:24px;margin:12px 0 22px}.stat strong{display:block;font-family:Georgia,serif;font-size:38px;font-weight:400;color:var(--ink)}.stat span{font-size:12px;color:var(--muted)}
+.feature{padding:20px 0 25px}.feature p{color:var(--muted)!important;font-size:13px}
+.coverage-row{display:flex;justify-content:space-between;padding:13px 0;border-bottom:1px solid var(--line);font-size:13px;gap:14px}.coverage-row b{font-weight:500}.status-missing{color:var(--muted)}
+.mode-badge{font-size:12px;color:var(--ink);display:flex;align-items:center;gap:8px;margin:10px 0}.mode-badge span{width:6px;height:6px;border-radius:50%;background:var(--accent)}
+.footer{display:flex;justify-content:space-between;gap:20px;border-top:1px solid var(--line);margin-top:45px;padding-top:22px;font-size:11px;color:var(--muted)}.footer b{color:var(--ink)}
+[data-baseweb="popover"],[data-baseweb="menu"],[role="listbox"],[role="option"]{background:var(--surface)!important;color:var(--ink)!important}
+[role="option"]:hover{background:var(--soft)!important}
+@media(max-width:800px){.block-container{padding:2rem 1rem}h1{font-size:2.5rem!important}.topbar span:last-child{display:none}.footer{flex-wrap:wrap}.editorial{margin-top:16px}}
+/* Native controls share the brand accent in both modes. */
+.stApp [role="radiogroup"] label>div:first-child{background:var(--surface)!important;border:1px solid var(--line)!important}
+.stApp [role="radiogroup"] label:has(input:checked)>div:first-child{background:var(--accent)!important;border-color:var(--accent)!important}
+.stApp [role="slider"]{background:var(--accent)!important}
+.stApp [data-testid="stSlider"] [data-testid="stTickBar"]{color:var(--muted)!important}
+[data-testid="stSidebar"] [role="radiogroup"] label{width:100%}
+[data-testid="stSidebar"] [role="radiogroup"][aria-orientation="horizontal"] label{width:auto}
+[class*="st-key-card_"]{background:var(--surface)!important;border-color:var(--line)!important;border-radius:12px!important}
+[class*="st-key-card_compare_"] h4{min-height:88px}
+[class*="st-key-card_example_"] h3{min-height:30px}
+@media(max-width:800px){[class*="st-key-card_compare_"] h4{min-height:0}}
+/* Keep framework administration outside the shopping experience. */
+[data-testid="stToolbar"], [data-testid="stMainMenu"],
+[data-testid="stAppDeployButton"], .stDeployButton, #MainMenu {display:none!important}
+/* Native popup surfaces must follow the active palette. */
+[data-baseweb="popover"], [data-baseweb="popover"]>div,
+[data-baseweb="menu"], [data-baseweb="menu"] li,
+[role="menu"], [role="menuitem"] {
+ background:var(--surface)!important;color:var(--ink)!important;
+ border-color:var(--line)!important;
+}
+[role="menuitem"] *, [data-baseweb="menu"] li * {color:var(--ink)!important}
+[role="menuitem"]:hover, [data-baseweb="menu"] li:hover {background:var(--soft)!important}

@@ -1,0 +1,1 @@
+PCS, evidence and sentiment modules copied unchanged from origin/wangzhongda at d72615a2f468bf206fa981ac6a0332ee64109b11. Only these dependencies are imported; the full generation branch was not merged. UI adaptation lives in src/ui/pcs_adapter.py.

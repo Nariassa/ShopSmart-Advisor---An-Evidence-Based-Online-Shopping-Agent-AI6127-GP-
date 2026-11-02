@@ -261,3 +261,10 @@ If reranking is added, first rerank the saved Dense top 20 with the existing
 cross-encoder. This comparison needs no additional judgments. Any experiment
 that retrieves beyond the frozen top-20 pools must add the new query-chunk
 pairs to the annotation pool before reporting formal metrics.
+
+
+## ShopSmart Advisor interface
+
+The Streamlit interface supports product discovery, inspectable evidence, requirement coverage, risk analysis and a three-product comparison, with Day/Night themes.
+
+See [UI setup and full-data startup](UI_README.md) and the [manual UI test checklist](UI_TEST_CHECKLIST.md). For a lightweight preview with the saved project outputs, install `streamlit pandas pyarrow numpy` and run `python launch_ui.py --mode saved --port 8501`.

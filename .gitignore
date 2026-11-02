@@ -57,3 +57,18 @@ scripts/finalize_ai_annotations.py
 scripts/finalize_reviewed_annotations_v2.py
 scripts/finalize_human_validated_qrels.py
 scripts/verify_ai_annotation_workbook.py
+
+.local-tools/
+.ui-test-temp/
+
+live-validation.json
+.model-cache/
+
+# Local UI delivery artifacts and credentials
+UI_DELIVERY.md
+database-check.json
+ui-preview.png
+ui-live-test.png
+.env
+.env.*
+!.env.example
