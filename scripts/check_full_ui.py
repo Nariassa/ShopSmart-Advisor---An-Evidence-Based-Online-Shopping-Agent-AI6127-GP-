@@ -10,6 +10,7 @@ os.environ['CHUNKS_PATH']=str(root.parent/'chunks.parquet')
 os.environ['CHROMA_PATH']=str(root.parent/'chroma_db')
 os.environ['EMBEDDING_SHARDS_PATH']=str(root.parent/'embedding_shards')
 os.environ.pop('OPENAI_API_KEY',None)
+os.environ['SHOPSMART_IGNORE_DOTENV']='1'
 from streamlit.testing.v1 import AppTest
 app=AppTest.from_file(str(root/'app.py')).run(timeout=180)
 assert not list(app.exception),[e.message for e in app.exception]

@@ -9,6 +9,10 @@ comparison used for downstream system design.
 The large knowledge-base artifacts are deliberately not stored in Git. They
 can be downloaded or rebuilt by following [Local setup](LOCAL_SETUP.md).
 
+To run the shopping website, follow the **[UI setup and startup guide](UI_README.md)**.
+It covers the Python environment, local `.env` API key, full database paths,
+the browser address, and the [recording test workflow](VIDEO_TEST_GUIDE.md).
+
 ## Project scope
 
 The retrieval work covers the following tasks:
@@ -214,8 +218,9 @@ Run the complete test suite from the repository root:
 .\.venv\Scripts\python.exe -m unittest discover -s tests -v
 ```
 
-The current suite contains nine tests covering BM25 retrieval, dense retrieval,
-RRF fusion, cross-encoder reranking, and graded evaluation metrics.
+The suite covers BM25 and dense retrieval, RRF fusion, cross-encoder reranking,
+graded evaluation metrics, risk analysis, UI integration, local settings,
+citation presentation, and navigation state.
 
 ## Key outputs
 
@@ -267,4 +272,4 @@ pairs to the annotation pool before reporting formal metrics.
 
 The Streamlit interface supports product discovery, inspectable evidence, requirement coverage, risk analysis and a three-product comparison, with Day/Night themes.
 
-See [UI setup and full-data startup](UI_README.md) and the [manual UI test checklist](UI_TEST_CHECKLIST.md). For a lightweight preview with the saved project outputs, install `streamlit pandas pyarrow numpy` and run `python launch_ui.py --mode saved --port 8501`.
+See [UI setup and full-data startup](UI_README.md) and the [manual UI test checklist](UI_TEST_CHECKLIST.md). After installing `requirements-ui.txt` in `.venv`, run `.\.venv\Scripts\python.exe launch_ui.py --mode full --port 8503` and open http://127.0.0.1:8503/. For a lightweight preview with recorded project outputs, use `--mode saved --port 8501` instead.

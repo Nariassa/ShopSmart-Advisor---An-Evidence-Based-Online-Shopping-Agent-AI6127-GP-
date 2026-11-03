@@ -32,7 +32,7 @@ p{line-height:1.65}
 .stApp [data-testid="stSidebar"] [role="radiogroup"]:not([aria-orientation="horizontal"]){gap:8px}
 .stApp [data-testid="stSidebar"] [role="radiogroup"] label{min-height:40px;padding:5px 8px;border-radius:7px}
 .stApp [data-testid="stSidebar"] [role="radiogroup"] label:has(input:checked){background:var(--soft)}
-.stApp [data-testid="stMetricValue"]{font-family:Georgia,serif;font-size:2.8rem;color:var(--accent)}
+.stApp [data-testid="stMetricValue"]{font-family:Georgia,serif;font-size:1.7rem!important;line-height:1.2;color:var(--accent)}
 .stApp [data-testid="stMetricLabel"] p{font-size:.75rem!important}
 .stApp [data-testid="stExpander"]{background:var(--surface);border-color:var(--line);border-radius:8px}
 .stApp [data-testid="stAlert"]{background:var(--soft);color:var(--ink)}
@@ -45,7 +45,17 @@ p{line-height:1.65}
 .feature{padding:20px 0 25px}.feature p{color:var(--muted)!important;font-size:13px}
 .coverage-row{display:flex;justify-content:space-between;padding:13px 0;border-bottom:1px solid var(--line);font-size:13px;gap:14px}.coverage-row b{font-weight:500}.status-missing{color:var(--muted)}
 .mode-badge{font-size:12px;color:var(--ink);display:flex;align-items:center;gap:8px;margin:10px 0}.mode-badge span{width:6px;height:6px;border-radius:50%;background:var(--accent)}
-.footer{display:flex;justify-content:space-between;gap:20px;border-top:1px solid var(--line);margin-top:45px;padding-top:22px;font-size:11px;color:var(--muted)}.footer b{color:var(--ink)}
+.st-key-site_footer{border-top:1px solid var(--line);margin-top:45px;padding-top:14px;color:var(--muted)}
+.footer-brand{font-size:11px;color:var(--ink)}
+.st-key-team_info button{min-height:30px;background:transparent!important;border:0!important;color:var(--muted)!important}
+.st-key-team_info button p{font-size:12px!important}
+.team-roster{margin-top:8px}
+.team-school{font-size:10px;font-weight:600;letter-spacing:.14em;color:var(--muted);padding-bottom:12px}
+.team-member{padding:13px 0;border-top:1px solid var(--line)}
+.team-name{font-size:16px;font-weight:500;color:var(--ink)}
+[data-testid="stDialog"] [role="dialog"]{background:var(--surface);color:var(--ink);border:1px solid var(--line)}
+[data-testid="stDialog"] h2,[data-testid="stDialog"] p{color:var(--ink)!important}
+[data-testid="stDialog"] button{color:var(--ink)!important}
 [data-baseweb="popover"],[data-baseweb="menu"],[role="listbox"],[role="option"]{background:var(--surface)!important;color:var(--ink)!important}
 [role="option"]:hover{background:var(--soft)!important}
 @media(max-width:800px){.block-container{padding:2rem 1rem}h1{font-size:2.5rem!important}.topbar span:last-child{display:none}.footer{flex-wrap:wrap}.editorial{margin-top:16px}}
@@ -60,9 +70,14 @@ p{line-height:1.65}
 [class*="st-key-card_compare_"] h4{min-height:88px}
 [class*="st-key-card_example_"] h3{min-height:30px}
 @media(max-width:800px){[class*="st-key-card_compare_"] h4{min-height:0}}
-/* Keep framework administration outside the shopping experience. */
-[data-testid="stToolbar"], [data-testid="stMainMenu"],
+/* Keep navigation controls available while hiding framework administration. */
+[data-testid="stToolbarActions"], [data-testid="stMainMenu"],
 [data-testid="stAppDeployButton"], .stDeployButton, #MainMenu {display:none!important}
+[data-testid="stSidebarCollapseButton"]{visibility:visible!important;opacity:1!important}
+[data-testid="stExpandSidebarButton"], [data-testid="stSidebarCollapseButton"] button{
+ min-width:40px;min-height:40px;background:var(--surface)!important;
+ color:var(--ink)!important;border:1px solid var(--line)!important;
+}
 /* Native popup surfaces must follow the active palette. */
 [data-baseweb="popover"], [data-baseweb="popover"]>div,
 [data-baseweb="menu"], [data-baseweb="menu"] li,

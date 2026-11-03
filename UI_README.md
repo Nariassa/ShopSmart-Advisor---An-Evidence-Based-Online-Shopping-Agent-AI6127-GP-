@@ -1,87 +1,220 @@
-# ShopSmart UI: run and hand off
+# ShopSmart UI: setup and startup
 
-## Current delivery
+The UI provides Discover, a three-product Compare workspace, Day/Night themes,
+and a small Team dialog in the footer. Commands below are for Windows PowerShell.
+Run them from the repository root (the folder containing `launch_ui.py`).
 
-The shopping interface has two workspaces:
+## 1. Get the latest code
 
-- Discover: editable queries, grounded recommendations, source inspection, evidence, requirement fit, risk analysis and adding products to comparison.
-- Compare: up to three products, source evidence, requirement coverage, removal and JSON export.
-- Day/Night appearance; English consumer-facing copy. Evaluation/debugging information stays outside the product UI.
-
-## Quick preview
-
-From this folder:
+For a new checkout:
 
 ```powershell
-python launch_ui.py --mode saved --port 8501
+git clone https://github.com/Nariassa/ShopSmart-Advisor---An-Evidence-Based-Online-Shopping-Agent-AI6127-GP-.git shopsmart-advisor
+cd shopsmart-advisor
 ```
 
-An existing preview may already occupy port 8501; use 8503 to run another instance. Saved mode uses the installed base Python environment. It requires streamlit, pandas, pyarrow and numpy.
-
-## Full knowledge base
-
-The launcher defaults to data in the parent directory: `chunks.parquet` plus `embedding_shards/` for bounded-memory search, or `chunks.parquet` plus `chroma_db/` for Chroma search. Keep large artifacts outside Git. Existing artifacts can be used directly without copying or reindexing.
-
-For another location set `SHOPSMART_DATA_DIR` to the directory containing those files. Individual overrides `CHUNKS_PATH`, `CHROMA_PATH` and `EMBEDDING_SHARDS_PATH` are also supported.
+For an existing checkout, save your own changes before updating:
 
 ```powershell
-$env:SHOPSMART_DATA_DIR = 'D:\data\electronics_kb'
-python launch_ui.py --mode full --port 8502
+git switch main
+git pull --ff-only origin main
 ```
 
-The default full launcher uses memory-mapped embedding shards and on-demand Parquet reads. It searches ALL 4,450,749 BGE vectors with exact cosine scoring in bounded batches; it is slower than a resident Chroma HNSW index but avoids loading that roughly 14 GB index plus the entire corpus into RAM. The original Chroma path remains available on a computer with sufficient memory:
+## 2. Create the Python environment
+
+Use Python 3.11. Create `.venv` once, then install the dependencies:
 
 ```powershell
-python launch_ui.py --mode full --retriever chroma --port 8502
-```
-
-Both paths use the same corpus and BAAI/bge-base-en-v1.5 embeddings. On this 16 GB computer only about 3 GB RAM was free during inspection, so loading the full Chroma index was not attempted.
-
-## Environment setup
-
-Use Python 3.11 and create the project-local environment:
-
-```powershell
-python -m venv .venv
+py -3.11 -m venv .venv
+.\.venv\Scripts\python.exe -m pip install --upgrade pip
 .\.venv\Scripts\python.exe -m pip install torch --index-url https://download.pytorch.org/whl/cpu
 .\.venv\Scripts\python.exe -m pip install -r requirements-ui.txt
 ```
 
-The first full run downloads the BGE and Cardiff sentiment models if not cached. Model downloads require internet access. OPENAI_API_KEY is optional: without it the app returns cited evidence excerpts; with it, the current UI backend calls gpt-4o-mini for generated recommendations. Provide credentials through the process environment; do not put them in source files or chat.
+If `py -3.11` is unavailable, install Python 3.11 first or use its full executable
+path. If `.venv` already exists with compatible dependencies, skip its creation
+and update dependencies with the last command. Activation is optional: these
+commands explicitly use the environment's Python executable. CPU execution is
+supported; a GPU is not required.
 
-## Current verified status (2026-11-02)
+## 3. Configure your local API key
 
-The earlier native-library load failures no longer reproduced on retry. Data libraries, Torch, the BGE encoder and the Cardiff sentiment pipeline loaded successfully without changing Windows security settings. Both models have now been downloaded and cached.
-
-Full knowledge-base validation passed for five real queries: each returned three products, source evidence, team PCS scores, requirement coverage and risk analysis. Measured search calls took 23.15-25.43 seconds in the backend validation run. The separate full-data UI check also passed search, adding three products, Compare, Night mode and removing all products.
-
-After startup, full mode is available on http://127.0.0.1:8502; saved mode can run separately on port 8501. First page preparation and new live searches can take time; wait for the loading indicator to finish. Appearance changes and comparison actions reuse existing search and answer outputs.
-
-The validation run used no OpenAI API key. Live search and transformer sentiment passed, while answers used cited review excerpts. Configure OPENAI_API_KEY in the launching environment only if generated recommendation prose is required.
-
-## PCS integration
-
-Full mode now calls the collaborator's `calculate_pcs` from `origin/wangzhongda` through `src/ui/pcs_adapter.py`; the three required source modules were copied unchanged. Their exact source commit is documented in `src/generation/UI_INTEGRATION.md`. This is an import of selected code, not a merge of the full generation branch.
-
-The adapter supplies actual product review evidence and existing transformer sentiment to the PCS module and preserves the UI return shape. It uses the available product-review scope, not an invented review count. Missing timestamps/verification/helpfulness remain missing. Saved mode keeps the historical v0 scoring behavior. The collaborator's PCS is experimental evidence confidence, not purchase-success probability.
-
-## Verification completed
-
-- Actual Parquet metadata and all 45 embedding shard headers match: 4,450,749 rows/vectors.
-- Real product evidence for two ASINs read successfully from the full corpus using bounded reads.
-- 21 tests pass: existing backend/risk tests plus exact shard-search and lazy evidence/PCS adaptation checks.
-- UI smoke checks cover the 20 saved queries, no results, empty input, three-product comparison, removing products, exports being rendered, both themes and New search.
-- Search and answer outputs are reused for presentation-only interactions so changing themes or adding to comparison does not issue another paid generation request.
-- Live runtime and five-query checks passed. The full-data UI check passed. Paid generation was not called; no API key is configured in the inspected session.
-
-After native libraries load, run the actual five-query check (may take several minutes):
+Copy `.env.example` to `.env` in the repository root only if `.env` does not
+already exist:
 
 ```powershell
-.\.venv\Scripts\python.exe scripts/check_live_ui.py
+if (-not (Test-Path -LiteralPath .env)) {
+    Copy-Item -LiteralPath .env.example -Destination .env
+}
+notepad .env
 ```
 
-This writes an ignored local live-validation.json only after the checks succeed. Run scripts/check_full_ui.py with the project environment to repeat the full UI smoke check without paid generation.
+Enter your own key in that file and save it:
 
-## Scope
+```dotenv
+OPENAI_API_KEY=your-own-api-key
+```
 
-This delivery concerns UI and integration. Annotation is handled by collaborators; annotation/report completion is not assessed or assigned to the UI owner.
+The app automatically loads `.env`. The current backend uses `gpt-4o-mini` for
+generated recommendations. You do not need to paste the key each time you
+launch. An existing `OPENAI_API_KEY` environment variable takes precedence over
+`.env`. Restart the server after changing the key.
+
+`.env` is ignored by Git. Do not put credentials in `.venv`, tracked source
+files, screenshots, or the example template. Each teammate supplies their own
+key; it is not included in the repository. API requests can incur usage charges.
+
+Without a key, retrieval and product analysis still work, but recommendations
+show cited review excerpts instead of generated answers. API failures also
+fall back to excerpts, so a working page alone does not prove a successful model
+request. Check your API usage records when verifying live generation.
+
+## 4. Prepare the full knowledge base
+
+The database is not included in Git. Obtain the shared artifacts from the team
+or follow [Local setup](LOCAL_SETUP.md). The default UI retrieval path needs:
+
+- `chunks.parquet`: the full 4,450,749-chunk corpus;
+- `embedding_shards/`: all 45 matching embedding/ID shard pairs.
+
+The easiest layout is:
+
+```text
+electronics_kb/
+|-- chunks.parquet
+|-- embedding_shards/
+|   |-- shard_..._emb.npy
+|   `-- shard_..._ids.npy
+`-- shopsmart-advisor/
+    |-- launch_ui.py
+    |-- .env
+    `-- .venv/
+```
+
+By default, the launcher looks for data in the repository's parent folder.
+If your files are elsewhere, set their folder in the same PowerShell terminal
+before launching:
+
+```powershell
+$env:SHOPSMART_DATA_DIR = 'D:\data\electronics_kb'
+```
+
+If you downloaded artifacts directly into the repository root, use:
+
+```powershell
+$env:SHOPSMART_DATA_DIR = (Get-Location).Path
+```
+
+Individual `CHUNKS_PATH`, `EMBEDDING_SHARDS_PATH` and `CHROMA_PATH` environment
+variables override those paths; remove stale overrides if the wrong files are
+selected. Set data-path variables in the launching terminal, not just in `.env`:
+the launcher checks paths before the app loads `.env`.
+
+The default shard retriever scans all vectors in bounded batches. It uses the
+full corpus, rather than a sample, without loading the entire Chroma index into
+memory. Only selected relevant evidence is sent to the answer model.
+
+## 5. Start the full application
+
+From the repository root:
+
+```powershell
+.\.venv\Scripts\python.exe launch_ui.py --mode full --port 8503
+```
+
+Keep the terminal running, then open **http://127.0.0.1:8503/** in Chrome.
+The first run may download the BGE embedding and Cardiff sentiment models;
+internet access is needed if they are not cached. Wait for initialization and
+search indicators to finish. Earlier full-corpus backend search measurements
+were approximately 23-25 seconds on the development machine; actual time varies
+with hardware and caching, and generation/analysis adds time.
+
+For subsequent sessions, open the repository folder, set the data path again
+if you use a non-default location, run the same startup command, and open the URL.
+No reindexing or database copy is needed for existing compatible artifacts.
+To stop the server, press `Ctrl+C` in its terminal.
+
+### Optional: Chroma retrieval
+
+With a complete `chroma_db/` in the selected data folder and enough RAM:
+
+```powershell
+.\.venv\Scripts\python.exe launch_ui.py --mode full --retriever chroma --port 8503
+```
+
+Both paths use BGE embeddings over the same corpus. The Chroma index is large;
+the default shard path is preferable on the 16 GB development computer.
+
+### Optional: lightweight UI preview
+
+To inspect the interface without the full database:
+
+```powershell
+.\.venv\Scripts\python.exe launch_ui.py --mode saved --port 8501
+```
+
+Open **http://127.0.0.1:8501/**. Saved mode replays recorded outputs for known
+test questions and uses a limited fallback for other inputs. It does not
+demonstrate live full-corpus retrieval or live answer generation. Use `--mode
+full` on port 8503 for end-to-end testing.
+
+## 6. Test the application
+
+See the [manual UI checklist](UI_TEST_CHECKLIST.md) and the
+[step-by-step recording guide](VIDEO_TEST_GUIDE.md).
+
+Start with a fresh browser session and submit:
+
+```text
+I need wireless earbuds for long flights, with long battery life and a comfortable fit.
+```
+
+Inspect the cited sources, requirement evidence and Why not? findings. Add three
+products to Compare, remove a product, export the comparison, switch themes, and
+collapse/reopen the sidebar. Open Team from the footer. Comparison and theme
+interactions reuse the current search and answer; submitting a new query can
+trigger another paid request.
+
+Run the automated tests without full-corpus search or paid model requests:
+
+```powershell
+.\.venv\Scripts\python.exe -m unittest discover -s tests -v
+```
+
+For developers, `scripts/check_full_ui.py` exercises full-data search and the UI
+workflow without paid generation. It expects the default parent-folder data
+layout, explicitly ignores `.env`, and removes `OPENAI_API_KEY` for that process.
+`scripts/check_live_ui.py` also expects that layout and checks five full-data
+queries without calling answer generation. These checks can take several minutes.
+
+## Troubleshooting
+
+| Problem | What to do |
+|---|---|
+| Project environment not found | Create `.venv` in the repository root using step 2. |
+| Missing corpus or embedding shards | Check the data layout and set `SHOPSMART_DATA_DIR` in the launching terminal. Git does not include the database. |
+| Native dependency preflight fails | Read the local `runtime-check.log`; confirm Python 3.11 and CPU Torch. Do not disable Windows security protections. |
+| Port already in use | Open the existing service, stop it in its original terminal, or choose another port and open the matching URL. |
+| Page does not open | Keep the terminal running and inspect its error output; use the exact port printed there. |
+| Key changes have no effect | Restart the server; check whether a terminal environment variable overrides `.env`. |
+| Answer contains only excerpts | Check API credentials, quota and connectivity. A valid key is required for live generated prose. |
+| Old page styling | Refresh the browser after updating the code; restart the service if necessary. |
+
+## Integration scope and verification
+
+Full mode uses the collaborator's PCS implementation through
+`src/ui/pcs_adapter.py`; provenance is recorded in
+`src/generation/UI_INTEGRATION.md`. Saved mode retains historical scores.
+Confidence scores represent experimental evidence confidence, not a probability
+that a purchase will succeed.
+
+The corpus and shard headers were checked at 4,450,749 rows/vectors. Full-data
+search, product analysis and the UI workflow were tested, and a separate real
+API-backed browser query returned generated prose with source citations.
+All 36 automated tests passed in the project Python 3.11 environment before
+this UI handoff on 2026-11-04.
+Recent UI fixes were checked with local saved-output previews, which make no
+paid generation requests. Browser export download remains a manual acceptance
+check. A known generation-quality issue is that a comfort claim can exceed its
+supporting evidence; citation presence alone does not establish faithfulness.
+This UI work does not reassess collaborators' annotation or report completion.

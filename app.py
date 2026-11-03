@@ -7,8 +7,11 @@ import time
 from pathlib import Path
 import streamlit as st
 from src.ui.backend import ShopSmartBackend
+from src.ui.settings import load_local_settings
+from src.ui.presentation import normalize_citation_labels
 
-ROOT = Path(__file__).parent
+ROOT = Path(__file__).resolve().parent
+load_local_settings(ROOT)
 st.set_page_config(page_title="ShopSmart | Buy with evidence", page_icon="S", layout="wide", initial_sidebar_state="expanded")
 st.session_state.setdefault("theme", "Day")
 st.session_state.setdefault("query", "")
@@ -30,6 +33,13 @@ def heading(kicker, title, description=None):
     markup(f'<h1>{esc(title).replace(chr(10), "<br>")}</h1>')
     if description:
         st.caption(description)
+
+@st.dialog('Our team', width='small')
+def show_team():
+    markup('<div class="team-school">GROUP 26 / CCDS</div><div class="team-roster" aria-label="Team members">' + ''.join(
+        f'<div class="team-member"><span class="team-name">{esc(name)}</span></div>'
+        for name in ['Balamurugan Harini', 'Cen Qinxuan', 'Li Ka Lam', 'Wang Zhongda', 'Zheng Haoyang']
+    ) + '</div>')
 
 MODE = os.getenv('SHOPSMART_MODE') or ('full' if Path(os.getenv('CHUNKS_PATH','chunks.parquet')).exists() else 'saved')
 @st.cache_resource
@@ -115,7 +125,7 @@ if page == 'Compare':
                 st.caption('Based on available review evidence.')
                 st.markdown('**Requirement coverage**')
                 for c in analysis['coverage']:
-                    st.write(f"{c['aspect']} — {dict(covered='Supported',partial='Limited',missing='No evidence')[c['status']]}")
+                    st.write(f"{c['aspect']} — {dict(covered='Evidence available',partial='Limited',missing='No evidence')[c['status']]}")
                 st.markdown('**Review finding**')
                 st.write(analysis['why_not'].get('headline','Insufficient review evidence.'))
                 with st.expander('Evidence'):
@@ -135,6 +145,8 @@ else:
             markup('<div class="editorial"><span class="editorial-label">THE SHOPSMART DIFFERENCE</span><div class="editorial-title">More than a<br>star rating.</div><div class="editorial-row"><b>01</b> Evidence you can inspect</div><div class="editorial-row"><b>02</b> Coverage of your requirements</div><div class="editorial-row"><b>03</b> A reason to think twice</div></div>')
     else:
         heading('YOUR BUYING BRIEF', 'Good choices have a reason.')
+    if 'search_input' not in st.session_state:
+        st.session_state.search_input = st.session_state.query
     with st.form('search'):
         st.text_input('What are you looking for?',key='search_input',placeholder='Wireless earbuds for long flights, with good battery life')
         submitted = st.form_submit_button('Find my options',type='primary',width='stretch')
@@ -184,7 +196,7 @@ else:
                 answer = st.session_state.last_answer
                 answer_text = re.sub(r'^\(LLM unavailable:[^\n]*\)\s*', 'Here is the available review evidence.\n\n', answer['text'])
                 answer_text = answer_text.replace('Generated from review quotes only (no language model connected).', 'Review highlights with linked sources.')
-                st.markdown(answer_text)
+                st.markdown(normalize_citation_labels(answer_text, answer['citations']))
                 if answer['citations']:
                     with st.expander('Inspect cited sources'):
                         for cid,c in answer['citations'].items():
@@ -205,14 +217,15 @@ else:
                     with right:
                         st.metric('Purchase confidence',f"{pcs['score']}/100")
                         st.caption('Based on available review evidence.')
-                    tabs=st.tabs(['Evidence','Requirement fit','Why not?'])
+                    tabs=st.tabs(['Evidence','Requirement evidence','Why not?'])
                     with tabs[0]:
                         for e in hit.evidence:
                             st.write(e.quote)
                             st.caption(f'{e.aspect} · {e.chunk_id}')
                     with tabs[1]:
+                        st.caption('Reviews discussing each requirement.')
                         for c in analysis['coverage']:
-                            markup(f'<div class="coverage-row"><span>{esc(c["aspect"])}</span><b class="status-{c["status"]}">{dict(covered="Supported",partial="Limited evidence",missing="No evidence")[c["status"]]}</b></div>')
+                            markup(f'<div class="coverage-row"><span>{esc(c["aspect"])}</span><b class="status-{c["status"]}">{dict(covered="Evidence available",partial="Limited evidence",missing="No evidence")[c["status"]]}</b></div>')
                             if c.get('note'):st.caption(c['note'])
                         if not analysis['coverage']:st.caption('Add specific requirements to your query to check coverage.')
                         with st.expander('Score breakdown'):
@@ -224,4 +237,12 @@ else:
                     full=len(st.session_state.shortlist)>=3
                     st.button('Added to comparison' if added else 'Add to comparison',key=f'add_{hit.asin}',disabled=added or full,on_click=save_product,args=(hit,analysis),width='stretch')
             if len(st.session_state.shortlist)>=3:st.caption('Comparison holds three products. Remove one in Compare to add another.')
-markup('<div class="footer"><b>ShopSmart.</b><span>Informed choices. Traceable evidence.</span><span>Electronics, considered.</span></div>')
+with st.container(key='site_footer'):
+    brand, tagline, team = st.columns([1, 4, 1], vertical_alignment='center')
+    with brand:
+        markup('<b class="footer-brand">ShopSmart.</b>')
+    with tagline:
+        st.caption('Informed choices. Traceable evidence.')
+    with team:
+        if st.button('Team', key='team_info', type='tertiary', width='stretch'):
+            show_team()
